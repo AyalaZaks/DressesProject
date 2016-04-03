@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TamarProject", "TamarProject\TamarProject.csproj", "{EC81B9CE-0149-4A0D-A734-A18F484913DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BL", "BL\BL.csproj", "{E915F31C-722E-43D3-ABE3-F368CF44908D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{CC524A24-AD00-4C6D-B5AE-7F333D382338}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EC81B9CE-0149-4A0D-A734-A18F484913DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC81B9CE-0149-4A0D-A734-A18F484913DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC81B9CE-0149-4A0D-A734-A18F484913DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC81B9CE-0149-4A0D-A734-A18F484913DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E915F31C-722E-43D3-ABE3-F368CF44908D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E915F31C-722E-43D3-ABE3-F368CF44908D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E915F31C-722E-43D3-ABE3-F368CF44908D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E915F31C-722E-43D3-ABE3-F368CF44908D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC524A24-AD00-4C6D-B5AE-7F333D382338}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC524A24-AD00-4C6D-B5AE-7F333D382338}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC524A24-AD00-4C6D-B5AE-7F333D382338}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC524A24-AD00-4C6D-B5AE-7F333D382338}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,532 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="cities">
+          <Key>
+            <PropertyRef Name="city_code" />
+          </Key>
+          <Property Name="city_code" Type="int" Nullable="false" />
+          <Property Name="city_name" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="colors">
+          <Key>
+            <PropertyRef Name="color_code" />
+          </Key>
+          <Property Name="color_code" Type="int" Nullable="false" />
+          <Property Name="color_name" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="customers">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" Nullable="false" />
+          <Property Name="first_name" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="last_name" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="city" Type="int" Nullable="false" />
+          <Property Name="address" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="customers_dresses">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="customer_id" Type="bigint" Nullable="false" />
+          <Property Name="dress_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="dresses">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="type_dress" Type="int" Nullable="false" />
+          <Property Name="color" Type="int" Nullable="false" />
+          <Property Name="size" Type="int" Nullable="false" />
+          <Property Name="price" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sizes">
+          <Key>
+            <PropertyRef Name="size_code" />
+          </Key>
+          <Property Name="size_code" Type="int" Nullable="false" />
+          <Property Name="size_name" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="telephones">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="customer_id" Type="bigint" Nullable="false" />
+          <Property Name="telephone_number" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="types">
+          <Key>
+            <PropertyRef Name="type_code" />
+          </Key>
+          <Property Name="type_code" Type="int" Nullable="false" />
+          <Property Name="type_name" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_customers_cities">
+          <End Role="cities" Type="Self.cities" Multiplicity="1" />
+          <End Role="customers" Type="Self.customers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cities">
+              <PropertyRef Name="city_code" />
+            </Principal>
+            <Dependent Role="customers">
+              <PropertyRef Name="city" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_customers_dresses_customers">
+          <End Role="customers" Type="Self.customers" Multiplicity="1" />
+          <End Role="customers_dresses" Type="Self.customers_dresses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customers">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="customers_dresses">
+              <PropertyRef Name="customer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_customers_dresses_dresses">
+          <End Role="dresses" Type="Self.dresses" Multiplicity="1" />
+          <End Role="customers_dresses" Type="Self.customers_dresses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dresses">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="customers_dresses">
+              <PropertyRef Name="dress_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dresses_colors">
+          <End Role="colors" Type="Self.colors" Multiplicity="1" />
+          <End Role="dresses" Type="Self.dresses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="colors">
+              <PropertyRef Name="color_code" />
+            </Principal>
+            <Dependent Role="dresses">
+              <PropertyRef Name="color" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dresses_sizes">
+          <End Role="sizes" Type="Self.sizes" Multiplicity="1" />
+          <End Role="dresses" Type="Self.dresses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sizes">
+              <PropertyRef Name="size_code" />
+            </Principal>
+            <Dependent Role="dresses">
+              <PropertyRef Name="size" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dresses_types">
+          <End Role="types" Type="Self.types" Multiplicity="1" />
+          <End Role="dresses" Type="Self.dresses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="types">
+              <PropertyRef Name="type_code" />
+            </Principal>
+            <Dependent Role="dresses">
+              <PropertyRef Name="type_dress" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_telephones_customers">
+          <End Role="customers" Type="Self.customers" Multiplicity="1" />
+          <End Role="telephones" Type="Self.telephones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customers">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="telephones">
+              <PropertyRef Name="customer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="cities" EntityType="Self.cities" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="colors" EntityType="Self.colors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="customers" EntityType="Self.customers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="customers_dresses" EntityType="Self.customers_dresses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="dresses" EntityType="Self.dresses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sizes" EntityType="Self.sizes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="telephones" EntityType="Self.telephones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="types" EntityType="Self.types" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_customers_cities" Association="Self.FK_customers_cities">
+            <End Role="cities" EntitySet="cities" />
+            <End Role="customers" EntitySet="customers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_customers_dresses_customers" Association="Self.FK_customers_dresses_customers">
+            <End Role="customers" EntitySet="customers" />
+            <End Role="customers_dresses" EntitySet="customers_dresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_customers_dresses_dresses" Association="Self.FK_customers_dresses_dresses">
+            <End Role="dresses" EntitySet="dresses" />
+            <End Role="customers_dresses" EntitySet="customers_dresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dresses_colors" Association="Self.FK_dresses_colors">
+            <End Role="colors" EntitySet="colors" />
+            <End Role="dresses" EntitySet="dresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dresses_sizes" Association="Self.FK_dresses_sizes">
+            <End Role="sizes" EntitySet="sizes" />
+            <End Role="dresses" EntitySet="dresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dresses_types" Association="Self.FK_dresses_types">
+            <End Role="types" EntitySet="types" />
+            <End Role="dresses" EntitySet="dresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_telephones_customers" Association="Self.FK_telephones_customers">
+            <End Role="customers" EntitySet="customers" />
+            <End Role="telephones" EntitySet="telephones" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="cities">
+          <Key>
+            <PropertyRef Name="city_code" />
+          </Key>
+          <Property Name="city_code" Type="Int32" Nullable="false" />
+          <Property Name="city_name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="customers" Relationship="Self.FK_customers_cities" FromRole="cities" ToRole="customers" />
+        </EntityType>
+        <EntityType Name="colors">
+          <Key>
+            <PropertyRef Name="color_code" />
+          </Key>
+          <Property Name="color_code" Type="Int32" Nullable="false" />
+          <Property Name="color_name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="dresses" Relationship="Self.FK_dresses_colors" FromRole="colors" ToRole="dresses" />
+        </EntityType>
+        <EntityType Name="customers">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" />
+          <Property Name="first_name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="last_name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="city" Type="Int32" Nullable="false" />
+          <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="cities" Relationship="Self.FK_customers_cities" FromRole="customers" ToRole="cities" />
+          <NavigationProperty Name="telephones" Relationship="Self.FK_telephones_customers" FromRole="customers" ToRole="telephones" />
+          <NavigationProperty Name="customers_dresses" Relationship="Model.FK_customers_dresses_customers" FromRole="customers" ToRole="customers_dresses" />
+        </EntityType>
+        <EntityType Name="customers_dresses">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="customer_id" Type="Int64" Nullable="false" />
+          <Property Name="dress_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="customers" Relationship="Model.FK_customers_dresses_customers" FromRole="customers_dresses" ToRole="customers" />
+          <NavigationProperty Name="dresses" Relationship="Model.FK_customers_dresses_dresses" FromRole="customers_dresses" ToRole="dresses" />
+        </EntityType>
+        <EntityType Name="dresses">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="type_dress" Type="Int32" Nullable="false" />
+          <Property Name="color" Type="Int32" Nullable="false" />
+          <Property Name="size" Type="Int32" Nullable="false" />
+          <Property Name="price" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="colors" Relationship="Self.FK_dresses_colors" FromRole="dresses" ToRole="colors" />
+          <NavigationProperty Name="sizes" Relationship="Self.FK_dresses_sizes" FromRole="dresses" ToRole="sizes" />
+          <NavigationProperty Name="types" Relationship="Self.FK_dresses_types" FromRole="dresses" ToRole="types" />
+          <NavigationProperty Name="customers_dresses" Relationship="Model.FK_customers_dresses_dresses" FromRole="dresses" ToRole="customers_dresses" />
+        </EntityType>
+        <EntityType Name="sizes">
+          <Key>
+            <PropertyRef Name="size_code" />
+          </Key>
+          <Property Name="size_code" Type="Int32" Nullable="false" />
+          <Property Name="size_name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="dresses" Relationship="Self.FK_dresses_sizes" FromRole="sizes" ToRole="dresses" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="telephones">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="customer_id" Type="Int64" Nullable="false" />
+          <Property Name="telephone_number" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="customers" Relationship="Self.FK_telephones_customers" FromRole="telephones" ToRole="customers" />
+        </EntityType>
+        <EntityType Name="types">
+          <Key>
+            <PropertyRef Name="type_code" />
+          </Key>
+          <Property Name="type_code" Type="Int32" Nullable="false" />
+          <Property Name="type_name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="dresses" Relationship="Self.FK_dresses_types" FromRole="types" ToRole="dresses" />
+        </EntityType>
+        <Association Name="FK_customers_cities">
+          <End Role="cities" Type="Self.cities" Multiplicity="1" />
+          <End Role="customers" Type="Self.customers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cities">
+              <PropertyRef Name="city_code" />
+            </Principal>
+            <Dependent Role="customers">
+              <PropertyRef Name="city" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dresses_colors">
+          <End Role="colors" Type="Self.colors" Multiplicity="1" />
+          <End Role="dresses" Type="Self.dresses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="colors">
+              <PropertyRef Name="color_code" />
+            </Principal>
+            <Dependent Role="dresses">
+              <PropertyRef Name="color" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_telephones_customers">
+          <End Role="customers" Type="Self.customers" Multiplicity="1" />
+          <End Role="telephones" Type="Self.telephones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customers">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="telephones">
+              <PropertyRef Name="customer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dresses_sizes">
+          <End Role="sizes" Type="Self.sizes" Multiplicity="1" />
+          <End Role="dresses" Type="Self.dresses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sizes">
+              <PropertyRef Name="size_code" />
+            </Principal>
+            <Dependent Role="dresses">
+              <PropertyRef Name="size" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dresses_types">
+          <End Role="types" Type="Self.types" Multiplicity="1" />
+          <End Role="dresses" Type="Self.dresses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="types">
+              <PropertyRef Name="type_code" />
+            </Principal>
+            <Dependent Role="dresses">
+              <PropertyRef Name="type_dress" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="my_projectEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="cities" EntityType="Self.cities" />
+          <EntitySet Name="colors" EntityType="Self.colors" />
+          <EntitySet Name="customers" EntityType="Self.customers" />
+          <EntitySet Name="customers_dresses" EntityType="Self.customers_dresses" />
+          <EntitySet Name="dresses" EntityType="Self.dresses" />
+          <EntitySet Name="sizes" EntityType="Self.sizes" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="telephones" EntityType="Self.telephones" />
+          <EntitySet Name="types" EntityType="Self.types" />
+          <AssociationSet Name="FK_customers_cities" Association="Self.FK_customers_cities">
+            <End Role="cities" EntitySet="cities" />
+            <End Role="customers" EntitySet="customers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dresses_colors" Association="Self.FK_dresses_colors">
+            <End Role="colors" EntitySet="colors" />
+            <End Role="dresses" EntitySet="dresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_telephones_customers" Association="Self.FK_telephones_customers">
+            <End Role="customers" EntitySet="customers" />
+            <End Role="telephones" EntitySet="telephones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dresses_sizes" Association="Self.FK_dresses_sizes">
+            <End Role="sizes" EntitySet="sizes" />
+            <End Role="dresses" EntitySet="dresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dresses_types" Association="Self.FK_dresses_types">
+            <End Role="types" EntitySet="types" />
+            <End Role="dresses" EntitySet="dresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_customers_dresses_customers" Association="Model.FK_customers_dresses_customers">
+            <End Role="customers" EntitySet="customers" />
+            <End Role="customers_dresses" EntitySet="customers_dresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_customers_dresses_dresses" Association="Model.FK_customers_dresses_dresses">
+            <End Role="dresses" EntitySet="dresses" />
+            <End Role="customers_dresses" EntitySet="customers_dresses" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="FK_customers_dresses_customers">
+          <End Type="Model.customers" Role="customers" Multiplicity="1" />
+          <End Type="Model.customers_dresses" Role="customers_dresses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customers">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="customers_dresses">
+              <PropertyRef Name="customer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_customers_dresses_dresses">
+          <End Type="Model.dresses" Role="dresses" Multiplicity="1" />
+          <End Type="Model.customers_dresses" Role="customers_dresses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dresses">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="customers_dresses">
+              <PropertyRef Name="dress_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="my_projectEntities">
+          <EntitySetMapping Name="cities">
+            <EntityTypeMapping TypeName="Model.cities">
+              <MappingFragment StoreEntitySet="cities">
+                <ScalarProperty Name="city_code" ColumnName="city_code" />
+                <ScalarProperty Name="city_name" ColumnName="city_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="colors">
+            <EntityTypeMapping TypeName="Model.colors">
+              <MappingFragment StoreEntitySet="colors">
+                <ScalarProperty Name="color_code" ColumnName="color_code" />
+                <ScalarProperty Name="color_name" ColumnName="color_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="customers">
+            <EntityTypeMapping TypeName="Model.customers">
+              <MappingFragment StoreEntitySet="customers">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="address" ColumnName="address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="customers_dresses">
+            <EntityTypeMapping TypeName="Model.customers_dresses">
+              <MappingFragment StoreEntitySet="customers_dresses">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+                <ScalarProperty Name="dress_id" ColumnName="dress_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="dresses">
+            <EntityTypeMapping TypeName="Model.dresses">
+              <MappingFragment StoreEntitySet="dresses">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="type_dress" ColumnName="type_dress" />
+                <ScalarProperty Name="color" ColumnName="color" />
+                <ScalarProperty Name="size" ColumnName="size" />
+                <ScalarProperty Name="price" ColumnName="price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sizes">
+            <EntityTypeMapping TypeName="Model.sizes">
+              <MappingFragment StoreEntitySet="sizes">
+                <ScalarProperty Name="size_code" ColumnName="size_code" />
+                <ScalarProperty Name="size_name" ColumnName="size_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="Model.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="telephones">
+            <EntityTypeMapping TypeName="Model.telephones">
+              <MappingFragment StoreEntitySet="telephones">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+                <ScalarProperty Name="telephone_number" ColumnName="telephone_number" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="types">
+            <EntityTypeMapping TypeName="Model.types">
+              <MappingFragment StoreEntitySet="types">
+                <ScalarProperty Name="type_code" ColumnName="type_code" />
+                <ScalarProperty Name="type_name" ColumnName="type_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
