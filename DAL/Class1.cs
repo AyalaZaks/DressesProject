@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
+
     public class Class1
     {
     }
