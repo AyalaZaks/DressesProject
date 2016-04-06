@@ -21,6 +21,7 @@
         <AssociationConnector Association="Model.FK_dresses_types" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_customers_dresses_customers" />
         <AssociationConnector Association="Model.FK_customers_dresses_dresses" />
+        <AssociationConnector Association="Model.FK_customers_dresses_customers1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
