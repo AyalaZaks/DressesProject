@@ -1,28 +1,18 @@
 ﻿<!DOCTYPE html>
-<html>
-<head>
-    <title></title>
-	<meta charset="utf-8" />
-</head>
-<body>
-
     <!--משתמש מוסיף שמלה-->
 
     <div>
         <h1>הוספת שמלה למאגר:</h1><br
-        <input type="button" value="העלאת שמלה" name="uplaodDress" onclick="openFile()" /><br />
-        <h2>צבע: </h2>
-        <!--combobox??--> <br />
-        <h2>קטגוריה: </h2>
-        <!--combobox??--><br />
-        <h2>מידה: </h2>
-        <!--combobox??-->
-        <h2>מחיר: </h2>
-        <input type="number" name="price"/><br />
-        <h2>תאור השמלה: </h2>
-        <input type="text" name="description" /><br />
-        <input type="button" name="upload" value="הוסף שמלה" onclick="addDress()" />
+        <input type="file" value="העלאת שמלה" id="uplaodDress" /><br />
+        <label for="selectColor">צבע: </label>
+        <select id="selectColor"></select><br />
+        <label for="selectCategory">קטגוריה: </label>
+        <select id="selectCategory"></select><br />
+        <label for="selectSize">מידה: </label>
+        <select id="selectSize"></select><br />
+        <label for="price">מחיר: </label>
+        <input type="text" id="price"/><br />
+        <label for="description">תאור השמלה: </label>
+        <input type="text" id="description" /><br />
+        <input type="button" id="upload" value="הוסף שמלה" onclick="addDress()" />
     </div>
-
-</body>
-</html>

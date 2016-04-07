@@ -1,12 +1,17 @@
 ﻿<!DOCTYPE html>
-<html>
-<head>
-    <title></title>
-	<meta charset="utf-8" />
-</head>
-<body>
 
     <!--עדכון פרטי שמלה--> 
-
-</body>
-</html>
+<div>
+    <label>עדכון פרטי שמלה</label><br />
+    <img id="imageDress" /> <br />
+    <input type="file" id="changeImageDress" value="בחר תמונה אחרת" />
+    <label for="size">מידה: </label>
+    <input type="text" id="size" /><br />
+    <label for="price">מחיר: </label>
+    <input type="text" id="price" /><br />
+    <label for="tel">טלפון: </label>
+    <input type="text" id="tel" /><br />
+    <label for="mail">דואר אלקטרוני: </label>
+    <input type="text" id="mail" /><br />
+    <input type="button" value="עדכן פרטים" id="updateDetails" onclick="updateDressDetails()" />
+</div>
