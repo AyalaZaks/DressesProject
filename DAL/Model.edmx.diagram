@@ -4,24 +4,23 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="882b37d89dd942fd8c91fad1f827b8c3" Name="Diagram1">
-        <EntityTypeShape EntityType="Model.cities" Width="1.5" PointX="2.75" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.colors" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.customers" Width="1.5" PointX="5" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.customers_dresses" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.dresses" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.sizes" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.sysdiagrams" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.telephones" Width="1.5" PointX="7.25" PointY="5.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.types" Width="1.5" PointX="0.75" PointY="6.875" IsExpanded="true" />
-        <AssociationConnector Association="Model.FK_customers_cities" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.FK_dresses_colors" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.FK_telephones_customers" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.FK_dresses_sizes" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.FK_dresses_types" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.FK_customers_dresses_customers" />
-        <AssociationConnector Association="Model.FK_customers_dresses_dresses" />
-        <AssociationConnector Association="Model.FK_customers_dresses_customers1" />
+      <Diagram DiagramId="7968d16a59364304abab9a7718a40090" Name="Diagram1">
+        <EntityTypeShape EntityType="my_projectModel.categories" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="my_projectModel.cities" Width="1.5" PointX="0.75" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="my_projectModel.colors" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="my_projectModel.customers" Width="1.5" PointX="3" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="my_projectModel.customers_dresses" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="my_projectModel.dresses" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="my_projectModel.sizes" Width="1.5" PointX="0.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="my_projectModel.sysdiagrams" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="my_projectModel.telephones" Width="1.5" PointX="5.25" PointY="10.5" IsExpanded="true" />
+        <AssociationConnector Association="my_projectModel.FK_dresses_categories" ManuallyRouted="false" />
+        <AssociationConnector Association="my_projectModel.FK_customers_cities" ManuallyRouted="false" />
+        <AssociationConnector Association="my_projectModel.FK_dresses_colors" ManuallyRouted="false" />
+        <AssociationConnector Association="my_projectModel.FK_customers_dresses_customers" ManuallyRouted="false" />
+        <AssociationConnector Association="my_projectModel.FK_telephones_customers" ManuallyRouted="false" />
+        <AssociationConnector Association="my_projectModel.FK_customers_dresses_dresses" ManuallyRouted="false" />
+        <AssociationConnector Association="my_projectModel.FK_dresses_sizes" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

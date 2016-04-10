@@ -12,16 +12,16 @@ namespace DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class types
+    public partial class categories
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public types()
+        public categories()
         {
             this.dresses = new HashSet<dresses>();
         }
     
-        public int type_code { get; set; }
-        public string type_name { get; set; }
+        public int categoery_code { get; set; }
+        public string categoery_name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<dresses> dresses { get; set; }

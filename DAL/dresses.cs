@@ -21,15 +21,15 @@ namespace DAL
         }
     
         public int id { get; set; }
-        public int type_dress { get; set; }
-        public int color { get; set; }
+        public int categoery_dress { get; set; }
+        public byte[] color { get; set; }
         public int size { get; set; }
         public int price { get; set; }
     
+        public virtual categories categories { get; set; }
         public virtual colors colors { get; set; }
-        public virtual sizes sizes { get; set; }
-        public virtual types types { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<customers_dresses> customers_dresses { get; set; }
+        public virtual sizes sizes { get; set; }
     }
 }

@@ -13,10 +13,10 @@ namespace DAL
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class my_projectEntities : DbContext
+    public partial class my_projectEntities1 : DbContext
     {
-        public my_projectEntities()
-            : base("name=my_projectEntities")
+        public my_projectEntities1()
+            : base("name=my_projectEntities1")
         {
         }
     
@@ -25,6 +25,7 @@ namespace DAL
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<categories> categories { get; set; }
         public virtual DbSet<cities> cities { get; set; }
         public virtual DbSet<colors> colors { get; set; }
         public virtual DbSet<customers> customers { get; set; }
@@ -33,6 +34,5 @@ namespace DAL
         public virtual DbSet<sizes> sizes { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<telephones> telephones { get; set; }
-        public virtual DbSet<types> types { get; set; }
     }
 }

@@ -15,7 +15,7 @@ namespace DAL
     public partial class telephones
     {
         public int id { get; set; }
-        public long customer_id { get; set; }
+        public int customer_id { get; set; }
         public long telephone_number { get; set; }
     
         public virtual customers customers { get; set; }

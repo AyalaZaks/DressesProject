@@ -20,7 +20,7 @@ namespace DAL
             this.dresses = new HashSet<dresses>();
         }
     
-        public int color_code { get; set; }
+        public byte[] color_code { get; set; }
         public string color_name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
